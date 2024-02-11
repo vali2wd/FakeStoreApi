@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+
+
+    <section class="col-3">
+      <h5 class="text-warning ms-3">Sort</h5>
+      <select class="form-select  my-3 mb-4" (change)="onSortSelected($event.target.value)">
+        <option *ngFor="let sort of sortOptions" [value]="sort.value">{{sort.name}}</option>
+      </select>
+
+      <h5 class="text-warning my-3 ms-3 ">Categories</h5>
+      <ul class="list-group my-3 mb-4">
+        <!-- [class.active]="brand.id === this.shopParams.brandId" AM SCOS ASTA DE JOS -->
+        <li class="list-group-item" *ngFor="let category of categories" [class.active] = "category === this.shopParams.category" 
+          [value]="category.title" (click)="onCategorySelected(category)"> {{category}}</li>
+        </ul>
+        
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-outline-info btn-md" style="margin-left: 0.5em; width: 100%;" (click)="onReset()">Reset</button>
+        </div>
+      <!-- <h5 class="text-warning ms-3 my-3">Types</h5>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let type of types" [class.active]="type.id === this.shopParams.typeId"
+          [value]="type.id" (click)="onTypeSelected(type.id)"> {{type.name}}</li>
+      </ul> -->
+
+    </section>
+
+    <section class="col-9">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col-4 " *ngFor="let item of products">
+          <app-product-item [product]="item"></app-product-item>
+        </div>
+      </div>
+      <!-- <div class="d-flex justify-content-center my-3" *ngIf="totalCount > 0">
+        <app-pager [pageSize]="shopParams.pageSize" [totalCount]="totalCount" (pageChanged)="onPageChange($event)"></app-pager>
+      </div> -->
+    </section>
+  </div>
+</div>
